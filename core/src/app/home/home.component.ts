@@ -13,11 +13,12 @@ import { CommonModule } from '@angular/common';
 export class HomeComponent {
     form!: FormGroup;
     fichier:boolean = false;
+    response!:Blob ;
 
     constructor(private fb:FormBuilder, private apiService:ApiService){
 
       this.form = this.fb.group({
-        'url': ['', [Validators.required]]
+        'url': [ '', [Validators.required]]
       })
     }
 
@@ -29,13 +30,38 @@ export class HomeComponent {
       }
       this.apiService.sendUrl(data).subscribe(
         {
-          next: response =>{
-            this.fichier = !this.fichier
+          next: blob =>{
+            this.response = blob ;
+
+            // const url = window.URL.createObjectURL(blob);
+            // const a = document.createElement('a');
+            // a.href = url;
+            // a.download = 'files.zip'; // Nom du fichier ZIP télécharger
+            // document.body.appendChild(a);
+            // a.click();
+            // document.body.removeChild(a);
+            // window.URL.revokeObjectURL(url);
+            this.fichier = !this.fichier;
+            console.log(this.response)
            },
-          error: erro =>{ }
+          error: erro =>{
+            console.error(erro)
+           }
         }
       )
     }
-
+    download(){
+      if(this.response) {
+        console.log('********************');
+        const url = window.URL.createObjectURL(this.response);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'file.zip';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(url)
+      }
+    }
 
 }
