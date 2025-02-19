@@ -13,7 +13,9 @@ import { CommonModule } from '@angular/common';
 export class HomeComponent {
     form!: FormGroup;
     fichier:boolean = false;
-    response!:Blob ;
+    response!:Blob ; // Pour stocker le fichier avent le télechargement
+    animate:boolean = false // L'animation lorsqu'ont click sur envoyer
+    messageError:boolean = false // Message d'erreur 
 
     constructor(private fb:FormBuilder, private apiService:ApiService){
 
@@ -25,6 +27,8 @@ export class HomeComponent {
     // Fonction pour executer l'envoye des données
 
     sendData():void{
+      this.messageError = false
+      this.animate = !this.animate
       const data = {
         'url': this.form.get('url')?.value
       }
@@ -41,11 +45,14 @@ export class HomeComponent {
             // a.click();
             // document.body.removeChild(a);
             // window.URL.revokeObjectURL(url);
+            this.animate = !this.animate
             this.fichier = !this.fichier;
             console.log(this.response)
            },
           error: erro =>{
-            console.error(erro)
+            console.error(erro,'****************')
+            this.animate = !this.animate
+            this.messageError = !this.messageError
            }
         }
       )
