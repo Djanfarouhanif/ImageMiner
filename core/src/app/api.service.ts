@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class ApiService {
 
   // urlApi: string = 'http://127.0.0.1:8000/api/load/' // En production
-  urlApi:string = "https://hanifcode.pythonanywhere.com/user/" // En production
+  urlApi:string = "https://hanifcode.pythonanywhere.com/api/load/" // En production
 
   private http = inject(HttpClient)
   constructor() { }
