@@ -37,7 +37,7 @@ export class HomeComponent {
           next: blob =>{
             console.log(blob,'**************');
             this.response = new Blob([blob], {type:blob.type}) ;
-            
+
             console.log('blbo*********', this.response);
 
 
@@ -62,8 +62,8 @@ export class HomeComponent {
       )
     }
     download(){
-      if(this.response) {
-        console.log('********************');
+      if(this.response && this.response.size > 0) {
+       
         const url = window.URL.createObjectURL(this.response);
         const a = document.createElement('a');
         a.href = url;

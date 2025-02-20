@@ -7,8 +7,8 @@ import { Observable } from 'rxjs';
 })
 export class ApiService {
 
-  // urlApi: string = 'http://127.0.0.1:8000/api/load/' // En production
-  urlApi:string = "https://hanifcode.pythonanywhere.com/api/load/" // En production
+    urlApi: string = 'http://127.0.0.1:8000/api/load/' // En production
+    //  urlApi:string = "https://hanifcode.pythonanywhere.com/api/load/" // En production
 
   private http = inject(HttpClient)
   constructor() { }
@@ -19,6 +19,6 @@ export class ApiService {
       'Content-Type': 'application/json'
     })
 
-    return this.http.post(this.urlApi, data, {headers:headers, responseType: 'blob'}) // blob import pour recuperer ls fichier binaire
+    return this.http.post(this.urlApi, data, {headers:headers, responseType: 'blob'}) //  blob import pour recuperer ls fichier binaire
   }
 }
