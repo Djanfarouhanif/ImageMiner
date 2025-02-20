@@ -35,7 +35,11 @@ export class HomeComponent {
       this.apiService.sendUrl(data).subscribe(
         {
           next: blob =>{
-            this.response = blob ;
+            console.log(blob,'**************');
+            this.response = new Blob([blob], {type:blob.type}) ;
+            
+            console.log('blbo*********', this.response);
+
 
             // const url = window.URL.createObjectURL(blob);
             // const a = document.createElement('a');
