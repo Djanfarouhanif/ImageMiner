@@ -12,7 +12,7 @@ import { CommonModule } from '@angular/common';
 })
 export class HomeComponent {
     form!: FormGroup;
-    fichier:boolean = false;
+    fichier:boolean = true;
     response!:Blob ; // Pour stocker le fichier avent le télechargement
     animate:boolean = false // L'animation lorsqu'ont click sur envoyer
     messageError:boolean = false // Message d'erreur 
@@ -61,6 +61,7 @@ export class HomeComponent {
         }
       )
     }
+    // Fonction pour declencher le telechargement
     download(){
       if(this.response && this.response.size > 0) {
        
